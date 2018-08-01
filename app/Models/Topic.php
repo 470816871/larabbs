@@ -8,7 +8,12 @@ class Topic extends Model
 
     public function replies()
     {
-        return $this->hasMany(Reply::class);
+        return $this->hasMany(Reply::class)->orderBy('updated_at', 'desc');
+    }
+
+    public function topReplies()
+    {
+        return $this->replies()->limit(5);
     }
 
     public function category()
